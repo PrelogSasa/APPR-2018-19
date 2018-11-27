@@ -1,0 +1,36 @@
+"Diplomanti terciarnega izobraževanja po: STATISTIÈNA REGIJA, MERITVE ,"
+"LETO"
+
+" ";"Število diplomantov";" ";" ";" ";" ";" ";" ";" ";" ";" ";" ";" ";" ";" ";" ";" ";" ";" ";" "
+" ";"1999";"2000";"2001";"2002";"2003";"2004";"2005";"2006";"2007";"2008";"2009";"2010";"2011";"2012";"2013";"2014";"2015";"2016";"2017"
+"SLOVENIJA";10536;11497;11991;14278;13931;14888;15787;17145;16680;17221;18103;19694;20461;21043;19175;18824;18631;30967;16458
+"Pomurska";406;477;530;613;624;644;630;690;727;833;847;981;1141;1057;913;872;1021;1495;804
+"Podravska";1367;1507;1734;1976;1832;1979;2075;2355;2288;2382;2510;2898;2944;3244;2794;2563;2617;4367;2272
+"Koroška";332;370;435;467;458;523;520;569;540;661;644;721;781;824;732;675;682;1033;559
+"Savinjska";1021;1203;1342;1698;1566;1829;2051;2199;2118;2201;2394;2676;2791;2759;2448;2319;2328;3799;2095
+"Zasavska";219;227;223;297;270;309;316;321;321;358;369;428;406;412;376;513;478;769;413
+"Posavska";331;381;349;444;468;521;502;513;554;573;570;612;690;718;675;693;651;989;582
+"Jugovzhodna Slovenija";721;821;820;937;976;1095;1143;1265;1126;1227;1291;1378;1420;1385;1443;1396;1339;2024;1161
+"Osrednjeslovenska";3324;3441;3429;4278;4135;4309;4719;4844;4907;4699;4907;5265;5154;5518;5100;5086;4940;8918;4363
+"Gorenjska";1181;1330;1348;1489;1381;1481;1626;1708;1698;1698;1857;1863;2095;2073;1866;1840;1764;2978;1520
+"Primorsko-notranjska";257;269;310;344;370;403;400;466;458;528;467;532;508;545;439;445;471;739;405
+"Goriška";698;711;711;865;940;895;917;1128;1001;1035;1110;1230;1264;1203;1178;1155;1131;1757;1007
+"Obalno-kraška";590;661;681;778;731;721;779;932;819;800;909;866;929;938;858;868;701;1403;720
+"Stalno bivališèe neznano ali v tujini";89;99;79;92;180;179;109;155;123;226;228;244;338;367;353;399;508;696;557
+
+"Vir: Statistièni urad Republike Slovenije."
+
+"Povezane vsebine: "
+"- (seznam HREF= http://www.stat.si/StatWeb/File/DocSysFile/7783 "
+"target=_blank) Metodološka pojasnila"
+
+"Podatki so teritorialno razvršèeni po uredbi o Standardni "
+"klasifikaciji teritorialnih enot ((seznam "
+"HREF=../database/Meta/Klas/SKTE.htm TARGET=_blank) opis in "
+"pojasnila), raven SKTE 3. "
+"Opombe o spremembah posameznih regij so zapisane k vsaki spremenjeni "
+"regiji in so ob izpisu tabele na zaslon dostopne s klikom na ikono za "
+"opombe (zvezdica). V opombah je na zaèetku naveden datum, s katerim "
+"je opisana teritorialna sprememba upoštevana pri teritorialnem "
+"razvršèanju enot za statistiène namene."
+
