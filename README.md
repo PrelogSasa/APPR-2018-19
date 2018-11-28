@@ -7,11 +7,19 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2018/19
 
 ## Analiza odlaganja odpadkov v Sloveniji
 
-V svojem projektu si bom odlaganje odpadkov in ravnanje z njimi skozi leta v Sloveniji. Primerjala bom statistične regije po količini odpadkov, ki jih proizvedejo tako posamezniki kot podjetja, primerjala jih bom tudi po količini odpadkov na previvalca. Poskusila bom poiskati povezave med starostjo in izobraženostjo prebivalcev ter količino odpadkov, ki jih proizvedejo. Rada bi našla tudi povezave med vlaganjem regij v varovanje okolja in količino proizvedenih odpadkov, ter količino ločenih odpadkov.
+V svojem projektu si bom ogledala odlaganje odpadkov in ravnanje z njimi skozi leta v Sloveniji. Primerjala bom statistične regije po količini odpadkov, ki jih proizvedejo tako posamezniki kot podjetja, primerjala jih bom tudi po količini odpadkov na prebivalca. Poskusila bom poiskati povezave med starostjo in izobraženostjo prebivalcev ter količino odpadkov, ki jih proizvedejo. Rada bi našla tudi povezave med vlaganjem regij v varovanje okolja in količino proizvedenih odpadkov, ter količino ločenih odpadkov.
 
-Moj cilj je prikazati da večja izobraženost in vlaganje v varovanje okolja spreminjajo kako ravnamo z odpadki.
+Moj cilj je prikazati, da večja izobraženost in vlaganje v varovanje okolja spreminjajo, kako ravnamo z odpadki.
 
+Tabela 1: Nastale količine komunalnih odpadkov glede na vrsto odpadkov: vrsta odpadkov, leta, zbrano z/izven javnega odvoza
+Tabela 2: Količina komunalnih odpadkov glede na način predelave: način predelave, leta
+Tabela 3: Količina nastalih odpadkov v tonah po regijah: regije, leta
+Tabela 4: Količina nastalih odpadkov na prebivalca po regijah: regije, leta
+Tabela 5: Investicije v varovanje okolja po regijah: regije, leta, v 1000EUR in v % od regionalnega BDP, delež namenjen ravnanju z odpadki
+Tabela 6: Izobrazba po regijah: regije, leta, diplomanti/dijaki/osnovnošolci
+Tabela 7: Starostne skupine po regijah: regije, leta, 0-14/15-64/65 in več
 
+Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 
 ## Program
 
