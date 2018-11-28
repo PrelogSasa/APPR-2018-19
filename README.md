@@ -7,8 +7,11 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2018/19
 
 ## Analiza odlaganja odpadkov v Sloveniji
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal.
-Tukaj boste napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+V svojem projektu si bom odlaganje odpadkov in ravnanje z njimi skozi leta v Sloveniji. Primerjala bom statistične regije po količini odpadkov, ki jih proizvedejo tako posamezniki kot podjetja, primerjala jih bom tudi po količini odpadkov na previvalca. Poskusila bom poiskati povezave med starostjo in izobraženostjo prebivalcev ter količino odpadkov, ki jih proizvedejo. Rada bi našla tudi povezave med vlaganjem regij v varovanje okolja in količino proizvedenih odpadkov, ter količino ločenih odpadkov.
+
+Moj cilj je prikazati da večja izobraženost in vlaganje v varovanje okolja spreminjajo kako ravnamo z odpadki.
+
+
 
 ## Program
 
