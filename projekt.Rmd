@@ -7,7 +7,6 @@ output:
     includes:
       in_header: lib/styles.sty
     latex_engine: xelatex
-runtime: shiny
 ---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -26,11 +25,21 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+Izbrala sem si temo analiza odlaganja odpadkov v Sloveniji
 
-![](slike/grb.png)
+V svojem projektu si bom ogledala odlaganje odpadkov in ravnanje z njimi skozi leta v Sloveniji. Primerjala bom statistične regije po količini odpadkov, ki jih proizvedejo tako posamezniki kot podjetja, primerjala jih bom tudi po količini odpadkov na prebivalca. Poskusila bom poiskati povezave med starostjo in izobraženostjo prebivalcev ter količino odpadkov, ki jih proizvedejo. Rada bi našla tudi povezave med vlaganjem regij v varovanje okolja in količino proizvedenih odpadkov, ter količino ločenih odpadkov.
 
-***
+Moj cilj je prikazati, da večja izobraženost in vlaganje v varovanje okolja spreminjajo, kako ravnamo z odpadki.
+
+* Tabela 1: Nastale količine komunalnih odpadkov glede na vrsto odpadkov: vrsta odpadkov, leta, zbrano z/izven javnega odvoza
+* Tabela 2: Količina komunalnih odpadkov glede na način predelave: način predelave, leta
+* Tabela 3: Količina nastalih odpadkov v tonah po regijah: regije, leta
+* Tabela 4: Količina nastalih odpadkov na prebivalca po regijah: regije, leta
+* Tabela 5: Investicije v varovanje okolja po regijah: regije, leta, v 1000EUR in v % od regionalnega BDP, delež namenjen ravnanju z odpadki
+* Tabela 6: Izobrazba po regijah: regije, leta, diplomanti/dijaki/osnovnošolci
+* Tabela 7: Starostne skupine po regijah: regije, leta, 0-14/15-64/65 in več
+
+Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 
 # Obdelava, uvoz in čiščenje podatkov
 
@@ -38,8 +47,7 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Uvozili smo podatke o občinah v obliki CSV s statističnega urada. Podatke imamo v sedmih razpredelnicah v obliki *tidy data*.
 
 1. `druzine` - podatki o družinah za vsako občino
   - `obcina` - spremenljivka: ime občine (neurejen faktor),
@@ -71,7 +79,7 @@ ggplot(obcine, aes(x=naselja)) + geom_histogram() +
 # Analiza in vizualizacija podatkov
 
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
-source("vizualizacija/vizualizacija.r", encoding="UTF-8")
+#source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
 Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
@@ -88,7 +96,7 @@ ggplot() + geom_polygon(data=left_join(zemljevid, povprecja, by=c("OB_UIME"="obc
 # Napredna analiza podatkov
 
 ```{r analiza, echo=FALSE, message=FALSE}
-source("analiza/analiza.r", encoding="UTF-8")
+#source("analiza/analiza.r", encoding="UTF-8")
 ```
 
 Spodnji graf prikazuje povezavo med številom naselij in površino občine.
@@ -106,5 +114,5 @@ ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
 ***
 
 ```{r shiny, echo=FALSE}
-shinyAppDir("shiny", options=list(width="100%", height=600))
+#shinyAppDir("shiny", options=list(width="100%", height=600))
 ```
