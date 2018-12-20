@@ -41,13 +41,24 @@ sl <- locale("sl", decimal_mark=",", grouping_mark=".")
 #  return(data)
 #}
 
-#Funkcija, ki uvozi podatke iz datoteke T1kolicine odpadkov in ravananje z njimi(tone)po vrstah odp.csv
-data <- read_csv2("podatki/T1kolicine_locenih_odpadkov.csv", n_max=7, skip=5, na="-", 
+#Funkcija, ki uvozi podatke iz datoteke T1kolicine_locenih_odpadkov.csv
+data1 <- read_csv2("podatki/T1kolicine_locenih_odpadkov.csv", n_max=7, skip=5, na="-", 
                   col_names=c("vrsta odpadkov", 2002:2017),
                     locale=locale(encoding="Windows-1250"))
 
-loceni.odpadki <- melt(data, id.vars="vrsta odpadkov", measure.vars=names(data)[-1],
+loceni.odpadki <- melt(data1, id.vars="vrsta odpadkov", measure.vars=names(data)[-1],
                        variable.name="leto", value.name="tone")
+
+#Funkcija, ki uvozi podatke iz datoteke T2predelava odpadkov(tone).csv
+data2 <- read_csv2("podatki/T2predelava odpadkov(tone).csv", skip=5, n_max=9, na=c("-","..."),
+                   col_names=c("zbriš","način predelave",2002:2017),
+                   locale=locale(encoding="Windows-1250"))
+
+data2 <- data2 %>% select(-"zbriš")
+
+predelava.odpadkov <- melt(data2, id.vars="način predelave", measure.vars=names(data)[-1],
+                          variable.name="leto", value.name="tone")
+
 
 
 # Zapišimo podatke v razpredelnico obcine
