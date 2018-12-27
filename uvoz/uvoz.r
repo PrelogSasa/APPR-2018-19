@@ -2,52 +2,14 @@
 
 sl <- locale("sl", decimal_mark=",", grouping_mark=".")
 
-# Funkcija, ki uvozi občine iz Wikipedije
-#uvozi.obcine <- function() {
-#  link <- "http://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji"
-#  stran <- html_session(link) %>% read_html()
-#  tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable sortable']") %>%
-#    .[[1]] %>% html_table(dec=",")
-#  for (i in 1:ncol(tabela)) {
-#    if (is.character(tabela[[i]])) {
-#      Encoding(tabela[[i]]) <- "UTF-8"
-#    }
-#  }
-#  colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
-#                        "ustanovitev", "pokrajina", "regija", "odcepitev")
-#  tabela$obcina <- gsub("Slovenskih", "Slov.", tabela$obcina)
-#  tabela$obcina[tabela$obcina == "Kanal ob Soči"] <- "Kanal"
-#  tabela$obcina[tabela$obcina == "Loški potok"] <- "Loški Potok"
-#  for (col in c("povrsina", "prebivalci", "gostota", "naselja", "ustanovitev")) {
-#    tabela[[col]] <- parse_number(tabela[[col]], na="-", locale=sl)
-#  }
-#  for (col in c("obcina", "pokrajina", "regija")) {
-#    tabela[[col]] <- factor(tabela[[col]])
-#  }
-#  return(tabela)
-#}
-
-# Funkcija, ki uvozi podatke iz datoteke druzine.csv
-#uvozi.druzine <- function(obcine) {
-#  data <- read_csv2("podatki/druzine.csv", col_names=c("obcina", 1:4),
-#                    locale=locale(encoding="Windows-1250"))
-#  data$obcina <- data$obcina %>% strapplyc("^([^/]*)") %>% unlist() %>%
-#    strapplyc("([^ ]+)") %>% sapply(paste, collapse=" ") %>% unlist()
-#  data$obcina[data$obcina == "Sveti Jurij"] <- "Sveti Jurij ob Ščavnici"
-#  data <- data %>% melt(id.vars="obcina", variable.name="velikost.druzine",
-#                        value.name="stevilo.druzin")
-#  data$velikost.druzine <- parse_number(data$velikost.druzine)
-#  data$obcina <- factor(data$obcina, levels=obcine)
-#  return(data)
-#}
 
 #Funkcija, ki uvozi podatke iz datoteke T1kolicine_locenih_odpadkov.csv
 data1 <- read_csv2("podatki/T1kolicine_locenih_odpadkov.csv", n_max=7, skip=5, na="-", 
                   col_names=c("vrsta odpadkov", 2002:2017),
                     locale=locale(encoding="Windows-1250"))
 
-loceni.odpadki <- melt(data1, id.vars="vrsta odpadkov", measure.vars=names(data)[-1],
-                       variable.name="leto", value.name="tone")
+loceni.odpadki <- melt(data1, id.vars="vrsta odpadkov", measure.vars=names(data1)[-1],
+                       variable.name="leto", value.name="tone", na.rm=TRUE)
 
 #Funkcija, ki uvozi podatke iz datoteke T2predelava odpadkov(tone).csv
 data2 <- read_csv2("podatki/T2predelava odpadkov(tone).csv", skip=5, n_max=9, na=c("-","..."),
@@ -56,16 +18,57 @@ data2 <- read_csv2("podatki/T2predelava odpadkov(tone).csv", skip=5, n_max=9, na
 
 data2 <- data2 %>% select(-"zbriš")
 
-predelava.odpadkov <- melt(data2, id.vars="način predelave", measure.vars=names(data)[-1],
-                          variable.name="leto", value.name="tone")
+predelava.odpadkov <- melt(data2, id.vars="način predelave", measure.vars=names(data2)[-1],
+                          variable.name="leto", value.name="tone", na.rm=TRUE)
+
+#Funkcija, ki uvozi podatke iz datoteke T3nastali odpadki po regijah(tone).csv
+data3 <- read_csv2("podatki/T3nastali odpadki po regijah(tone).csv", skip=5, n_max=15, 
+                   col_names=c("regije", 2010:2017),
+                   locale=locale(encoding="Windows-1250"))
+
+nastali.odpadki.regije1 <- melt(data3, id.vars="regije", measure.vars=names(data3)[-1],
+                               variable.name="leto", value.name="tone", na.rm=TRUE)
+
+#Funkcija, ki uvozi podatke iz datoteke T3nastali odpadki po regijah(na prebivalca).csv
+data4 <- read_csv2("podatki/T3nastali odpadki po regijah(na prebivalca).csv", skip=5, n_max=15, 
+                   col_names=c("regije", 2002:2017),
+                   locale=locale(encoding="Windows-1250"))
+
+nastali.odpadki.regije2 <- melt(data4, id.vars="regije", measure.vars=names(data4)[-1],
+                                variable.name="leto", value.name="kg na prebivalca", na.rm=TRUE)
+
+#Funkcija, ki uvozi podatke iz datoteke T4procent loceno zbranih odpadkov po regijah.csv
+data5 <- read_delim("podatki/T4procent loceno zbranih odpadkov po regijah.csv", delim=";", skip=5, n_max=15, 
+                   col_names=c("regije", 2002:2017),
+                  locale=locale(encoding="Windows-1250",decimal_mark="."))
+
+loceni.odpadki.regije <- melt(data5, id.vars="regije", measure.vars=names(data5)[-1],
+                              variable.name="leto", value.name="delež(%)", na.rm=TRUE)
+
+#Funkcija, ki uvozi podatke iz datoteke T6dijaki po regijah.csv
+data8 <- read_csv2("podatki/T6dijaki po regijah.csv", skip=5, n_max=13, 
+                   col_names=c("regije", 2007:2017),
+                   locale=locale(encoding="Windows-1250"))
+
+izobraba.regije1 <- melt(data8, id.vars="regije", measure.vars=names(data8)[-1],
+                         variable.name="leto", value.name="število", na.rm=TRUE)
+
+#Funkcija, ki uvozi podatke iz datoteke T6diplomanti po regijah.csv
+data9 <- read_csv2("podatki/T6diplomanti po regijah.csv", skip=5, n_max=13, 
+                   col_names=c("regije", 1999:2017),
+                   locale=locale(encoding="Windows-1250"))
+
+data9 <- data9 %>% select(names(data9)[-(2:9)])
+
+izobrazba.regije2 <- melt(data9, id.vars="regije", measure.vars=names(data9)[-1],
+                          variable.name="leto", value.name="število", na.rm=TRUE)
+
+#Funkcija, ki uvozi podatke iz datoteke T6osnovnosolci po regijah.csv
+data10 <- read_csv2("podatki/T6osnovnosolci po regijah.csv", skip=5, n_max=15, 
+                   col_names=c("regije", 2005:2014),
+                   locale=locale(encoding="Windows-1250")) #drgačna imena regij!!
 
 
-
-# Zapišimo podatke v razpredelnico obcine
-#obcine <- uvozi.obcine()
-
-# Zapišimo podatke v razpredelnico druzine.
-#druzine <- uvozi.druzine(levels(obcine$obcina))
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
