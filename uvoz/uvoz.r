@@ -29,14 +29,6 @@ data3 <- read_csv2("podatki/T3nastali odpadki po regijah(tone).csv", skip=5, n_m
 nastali.odpadki.regije1 <- melt(data3, id.vars="regije", measure.vars=names(data3)[-1],
                                variable.name="leto", value.name="tone", na.rm=TRUE)
 
-#Funkcija, ki uvozi podatke iz datoteke T3nastali odpadki po regijah(na prebivalca).csv
-data4 <- read_csv2("podatki/T3nastali odpadki po regijah(na prebivalca).csv", skip=5, n_max=15, 
-                   col_names=c("regije", 2002:2017),
-                   locale=locale(encoding="Windows-1250"))
-
-nastali.odpadki.regije2 <- melt(data4, id.vars="regije", measure.vars=names(data4)[-1],
-                                variable.name="leto", value.name="kg na prebivalca", na.rm=TRUE)
-
 #Funkcija, ki uvozi podatke iz datoteke T4procent loceno zbranih odpadkov po regijah.csv
 data5 <- read_delim("podatki/T4procent loceno zbranih odpadkov po regijah.csv", delim=";", skip=5, n_max=15, 
                    col_names=c("regije", 2002:2017),
@@ -45,33 +37,37 @@ data5 <- read_delim("podatki/T4procent loceno zbranih odpadkov po regijah.csv", 
 loceni.odpadki.regije <- melt(data5, id.vars="regije", measure.vars=names(data5)[-1],
                               variable.name="leto", value.name="delež(%)", na.rm=TRUE)
 
-#Funkcija, ki uvozi podatke iz datoteke T6dijaki po regijah.csv
-data8 <- read_csv2("podatki/T6dijaki po regijah.csv", skip=5, n_max=13, 
-                   col_names=c("regije", 2007:2017),
+#Funkcija, ki uvozi podatke iz datoteke T5investicije po regijah (1000eur).csv
+data6 <- read_csv2("podatki/T5investicije po regijah (1000eur).csv", skip=4, n_max=13, 
+                   col_names=c("regije", 2001:2016),
                    locale=locale(encoding="Windows-1250"))
 
-izobraba.regije1 <- melt(data8, id.vars="regije", measure.vars=names(data8)[-1],
-                         variable.name="leto", value.name="število", na.rm=TRUE)
-
-#Funkcija, ki uvozi podatke iz datoteke T6diplomanti po regijah.csv
-data9 <- read_csv2("podatki/T6diplomanti po regijah.csv", skip=5, n_max=13, 
-                   col_names=c("regije", 1999:2017),
+#Funkcija, ki uvozi podatke iz datoteke T5investicije za varstvo okolja po regijah(indeksi regionalnega bdp).csv
+data7 <- read_csv2("podatki/T5investicije za varstvo okolja po regijah(indeksi regionalnega bdp).csv", skip=5, n_max=15, 
+                   col_names=c("regije", 2001:2016),
                    locale=locale(encoding="Windows-1250"))
 
-data9 <- data9 %>% select(names(data9)[-(2:9)])
+#napačna imena regij!!!!!
 
-izobrazba.regije2 <- melt(data9, id.vars="regije", measure.vars=names(data9)[-1],
-                          variable.name="leto", value.name="število", na.rm=TRUE)
+#Funkcija, ki uvozi podatke iz datoteke T6srednja po regijah.csv
+data8 <- read_csv2("podatki/T6srednja po regijah.csv", skip=3, n_max=13, 
+                   col_names=c("regije", "srednja izobrazba"),
+                   locale=locale(encoding="Windows-1250"))
 
-#Funkcija, ki uvozi podatke iz datoteke T6osnovnosolci po regijah.csv
-data10 <- read_csv2("podatki/T6osnovnosolci po regijah.csv", skip=5, n_max=15, 
-                   col_names=c("regije", 2005:2014),
-                   locale=locale(encoding="Windows-1250")) #drgačna imena regij!!
+#Funkcija, ki uvozi podatke iz datoteke T6visja po regijah.csv
+data9 <- read_csv2("podatki/T6visja po regijah.csv", skip=3, n_max=13, 
+                   col_names=c("regije", 1:3 ),
+                   locale=locale(encoding="Windows-1250"))
+
+data9["višja izobrazba"] <- apply(data9[-1], 1, sum)
 
 
+#Funkcija, ki uvozi podatke iz datoteke T6osnovnosolska po regijah.csv
+data10 <- read_csv2("podatki/T6osnovnosolska po regijah.csv", skip=3, n_max=13, 
+                   col_names=c("regije","osnovnošolska"),
+                   locale=locale(encoding="Windows-1250"))
 
-# Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
-# potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
-# datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
-# 2. fazi. Seveda bi morali ustrezno datoteko uvoziti v prihodnjih
-# fazah.
+#Funkcija, ki združi podatke o izobrazbi v eno tabelo
+izobrazba.regije <- data.frame(data10, data8[2], data9[5])
+
+#Funkcija, ki uvozi podatke iz datoteke T7st prebivalcev po regijah starostne skupine.csv

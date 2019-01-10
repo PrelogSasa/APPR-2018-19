@@ -33,10 +33,10 @@ Moj cilj je prikazati, da večja izobraženost in vlaganje v varovanje okolja sp
 
 * Tabela 1: Nastale količine komunalnih odpadkov glede na vrsto odpadkov: vrsta odpadkov, leto, tone
 * Tabela 2: Količina komunalnih odpadkov glede na način predelave: način predelave, leto, tone
-* Tabela 3: Količina nastalih odpadkov v tonah po regijah: regije, leto, tone, kg na prebivlaca
+* Tabela 3: Količina nastalih odpadkov v tonah po regijah: regije, leto, tone
 * Tabela 4: Procent  (od nastalih) ločeno zbranih odpadkov po regijah: regije, leto, delež(%)
-* Tabela 5: Investicije v varovanje okolja po regijah: regije, leta, v 1000EUR in v % od regionalnega BDP, delež namenjen ravnanju z odpadki
-* Tabela 6: Izobrazba po regijah: regije, leta, št diplomantov, št dijakov, št osnovnošolcev
+* Tabela 5: Investicije v boljše ravnanje z odpadki po regijah: regije, leta, v 1000EUR, v % od regionalnega BDP
+* Tabela 6: Izobrazba po regijah (iz 2002): regije, osnovnošolska izobrazba, srednja izobrazba, višja izobrazba
 * Tabela 7: Starostne skupine po regijah: regije, leta, 0-14/15-64/65 in več
 
 Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
@@ -64,8 +64,6 @@ Uvozili smo podatke o občinah v obliki CSV s statističnega urada. Podatke imam
   - `pokrajina` - meritev: pokrajina, ki ji občina pripada (neurejen faktor),
   - `regija` - meritev: regija, ki ji občina pripada (neurejen faktor),
   - `odcepitev` - meritev: podatki o občinah, od katerih se je občina odcepila (besedilo).
-
-**Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
 
 Spodnji graf prikazuje porazdelitev števila naselij v občinah.
 
