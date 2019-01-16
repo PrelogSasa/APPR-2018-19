@@ -27,7 +27,7 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 Izbrala sem si temo analiza odlaganja odpadkov v Sloveniji
 
-V svojem projektu si bom ogledala odlaganje odpadkov in ravnanje z njimi skozi leta v Sloveniji. Primerjala bom statistične regije po količini odpadkov, ki jih proizvedejo tako posamezniki kot podjetja, primerjala jih bom tudi po količini odpadkov na prebivalca. Poskusila bom poiskati povezave med starostjo in izobraženostjo prebivalcev ter količino odpadkov, ki jih proizvedejo. Rada bi našla tudi povezave med vlaganjem regij v varovanje okolja in količino proizvedenih odpadkov, ter količino ločenih odpadkov.
+V svojem projektu si bom ogledala odlaganje odpadkov in ravnanje z njimi skozi leta v Sloveniji. Primerjala bom statistične regije po količini odpadkov, ki jih proizvedejo posamezniki, primerjala jih bom tudi po količini odpadkov na prebivalca. Poskusila bom poiskati povezave med starostjo in izobraženostjo prebivalcev ter količino odpadkov, ki jih proizvedejo. Rada bi našla tudi povezave med vlaganjem regij v varovanje okolja in količino proizvedenih odpadkov, ter količino ločenih odpadkov.
 
 Moj cilj je prikazati, da večja izobraženost in vlaganje v varovanje okolja spreminjajo, kako ravnamo z odpadki.
 
@@ -39,21 +39,60 @@ Moj cilj je prikazati, da večja izobraženost in vlaganje v varovanje okolja sp
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozila sem podatke o odlaganu odpadkov v sloveniji v obliki CSV s statističnega urada. Podatke imam v sedmih razpredelnicah v obliki *tidy data*.
+Uvozila sem podatke o odlaganju odpadkov v sloveniji v obliki CSV s statističnega urada. Podatke imam v sedmih razpredelnicah v obliki *tidy data*.
 
-* Tabela 1: Nastale količine komunalnih odpadkov glede na vrsto odpadkov: vrsta odpadkov, leto, tone
-* Tabela 2: Količina komunalnih odpadkov glede na način predelave: način predelave, leto, tone
-* Tabela 3: Količina nastalih odpadkov v tonah po regijah: regije, leto, tone
-* Tabela 4: Procent  (od nastalih) ločeno zbranih odpadkov po regijah: regije, leto, delež(%)
-* Tabela 5: Investicije v boljše ravnanje z odpadki po regijah: regije, leta, v 1000EUR, v % od regionalnega BDP
-* Tabela 6: Izobrazba po regijah (iz 2002): regije, osnovnošolska izobrazba, srednja izobrazba, višja izobrazba
-* Tabela 7: Starostne skupine po regijah: regije, leta, 0-14/15-64/65 in več
+1. 'vrsta.odpadkov' - Nastale količine komunalnih odpadkov (v celi Sloveniji) glede na vrsto odpadkov:
+  -'vrsta odpadkov' [character] pove nam vrsto odpadkov (npr. papir, embalaža itd.)
+  -'leto' [factor] 
+  -'tone' [numeric] koliko ton odpadkov je nastalo
+  
+2. 'predelava.odpadkov' - Količina komunalnih odpadkov glede na način predelave: 
+  -'nacin predelave' [character] pove nam kateri način predelave odpadkov opazujemo
+  -'leto' [factor]
+  -'tone' [numeric] koliko ton odpadkov je bilo predelanih (na nek način)
+
+3. 'nastali.odpadki.regije' - Količina nastalih odpadkov v tonah po regijah: 
+  -'regije' [character] katero regijo opazujemo
+  -'leto' [factor]
+  -'tone'[numeric] koliko ton odpadkov je nastalo
+
+4. 'loceni.odpadki.regije' - Procent (od nastalih) ločeno zbranih odpadkov po regijah:
+  -'regije' [character] katero regijo opazujemo
+  -'leto' [factor]
+  -'delez' [numeric] procent odpadkov, ki so bili zbrani ločeno
+
+5. 'investicije.regije' - Investicije v boljše ravnanje z odpadki po regijah:
+  -'regije' [character] katero regijo opazujemo
+  -'leta' [factor]
+  -'1000 EUR' [numeric] investicije v boljše ravnanje z odpadki v 1000 EUR
+  -'% regionalnega BDP' [numeric] investicije v boljše ravnanje z odpadki kot procent regionalnega BDP
+
+6. 'izobrazba.regije' - Izobrazba prebivalcev po regijah (iz leta 2002): 
+  -'regije' [character] katero regijo opazujemo
+  -'osnovnosolska' [numeric] število prebivalcev z osnovnošolsko stopnjo izobrazbe
+  -'srednja izobrazba' [numeric] število prebivalcev z srednjo stopnjo izobrazbe
+  -'visja izobrazba' [numeric] število prebivalcev z višjo stopnjo izobrazbe
+
+7. 'starostne.skupine.regije' - Starostne skupine po regijah: 
+  -'regije' [character] katero regijo opazujemo
+  -'leto' [factor]
+  -'0-14' [numeric] število ljudi v starostni skupini 0 do 14 let
+  -'15-64' [numeric] število ljudi v starostni skupini 15 do 64 let
+  -'65+' [numeric] število ljudi v starostni skupini 65 let in več
 
 Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 
+Stolpični diagram prikazuje podatke iz tabele nastali.odpadki.regije za leto 2017 - količina nastalih odpadkov za statistične regije Sovenije.
+
+```{r odpadki_po_regijh_2017, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='Stolpični diagram nastalh odpadkov v letu 2017 za statistične regije Slovenije'}
+ggplot(nastali.odpadki.regije %>% filter(regije != 'SLOVENIJA', leto == 2017)) + aes(x=regije, y=tone) + geom_col() + xlab("Statistične regije") + ylab("Nastali odpadki (tone)") + ggtitle("Stolpični diagram nastalh odpadkov v letu 2017 za statistične regije Slovenije") +  theme(axis.text.x = element_text(angle = 90, vjust = 0.3, hjust=1))
+
+```
 
 # Analiza in vizualizacija podatkov
 
+Najprej bi si rada pogledala katera regija proizvede največ odpadkov na prebivalca in katera največ ločuje, ter si ogledala ali se to spreminja s časom.
+Potem bi rada prikazala povezave med izobraženostjo prebivalstva in količino ločenih odpadkov (primerjava po regijah za leto 2002), morebitno povezavo med starostjo prebivalstva in količino nastalih oz. ločenih odpadkov, povezavo med investiranjem v boljše ravnanje z odpadki  in procentom ločeno zbranih odpadkov (primerjava glede na regije ali pa morda ena regija v času).
 
 # Napredna analiza podatkov
 
