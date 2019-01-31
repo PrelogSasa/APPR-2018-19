@@ -88,7 +88,7 @@ Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Najprej sem si ogledala stanje skozi leta, v celi Sloveniji. Vidimo, da vedno več ločujemo; Najhitreje se je stanje spreminjalo med letoma 2007 in 2012, v zadnjih nekaj letih pa se je rest nekoliko ustavila. Najbolj se je povečala količina ločene embalaže.
+Najprej sem si ogledala stanje skozi leta za celo Slovenijo. Videti je da vedno več ločujemo - najhitreje se je stanje spreminjalo med letoma 2007 in 2012, v zadnjih nekaj letih pa se je rest nekoliko ustavila. Najbolj se je povečala količina ločene embalaže.
 
 ```{r graf_locevanje_skozi_leta, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 graf.locevanje.skozi.leta + xlab("Leto") + ylab("Tone zbranih odpadkov") + ggtitle("Graf ločenih odpadkov po vrstah") + labs(color="Vrsta odpadkov")
@@ -113,8 +113,8 @@ graf.starost.in.locevanje.starejsi + xlab("Delež starejših") + ylab("Delež lo
 
 ```
 
-Najprej bi si rada pogledala katera regija proizvede največ odpadkov na prebivalca in katera največ ločuje, ter si ogledala ali se to spreminja s časom.
-Potem bi rada prikazala povezave med izobraženostjo prebivalstva in količino ločenih odpadkov (primerjava po regijah za leto 2002), morebitno povezavo med starostjo prebivalstva in količino nastalih oz. ločenih odpadkov, povezavo med investiranjem v boljše ravnanje z odpadki  in procentom ločeno zbranih odpadkov (primerjava glede na regije ali pa morda ena regija v času).
+(Najprej bi si rada pogledala katera regija proizvede največ odpadkov na prebivalca in katera največ ločuje, ter si ogledala ali se to spreminja s časom.
+ morebitno povezavo med starostjo prebivalstva in količino nastalih oz. ločenih odpadkov, povezavo med investiranjem v boljše ravnanje z odpadki  in procentom ločeno zbranih odpadkov (primerjava glede na regije ali pa morda ena regija v času).)
 
 # Napredna analiza podatkov
 
