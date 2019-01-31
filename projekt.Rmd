@@ -42,43 +42,43 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 Uvozila sem podatke o odlaganju odpadkov v sloveniji v obliki CSV s statističnega urada. Podatke imam v sedmih razpredelnicah v obliki *tidy data*.
 
 1. 'vrsta.odpadkov' - Nastale količine komunalnih odpadkov (v celi Sloveniji) glede na vrsto odpadkov:
-  -'vrsta odpadkov' [character] pove nam vrsto odpadkov (npr. papir, embalaža itd.)
-  -'leto' [factor] 
-  -'tone' [numeric] koliko ton odpadkov je nastalo
+  - 'vrsta odpadkov' [character] pove nam vrsto odpadkov (npr. papir, embalaža itd.)
+  - 'leto' [factor] 
+  - 'tone' [numeric] koliko ton odpadkov je nastalo
   
 2. 'predelava.odpadkov' - Količina komunalnih odpadkov glede na način predelave: 
-  -'nacin predelave' [character] pove nam kateri način predelave odpadkov opazujemo
-  -'leto' [factor]
-  -'tone' [numeric] koliko ton odpadkov je bilo predelanih (na nek način)
+  - 'nacin predelave' [character] pove nam kateri način predelave odpadkov opazujemo
+  - 'leto' [factor]
+  - 'tone' [numeric] koliko ton odpadkov je bilo predelanih (na nek način)
 
 3. 'nastali.odpadki.regije' - Količina nastalih odpadkov v tonah po regijah: 
-  -'regije' [character] katero regijo opazujemo
-  -'leto' [factor]
-  -'tone'[numeric] koliko ton odpadkov je nastalo
+  - 'regije' [character] katero regijo opazujemo
+  - 'leto' [factor]
+  - 'tone'[numeric] koliko ton odpadkov je nastalo
 
 4. 'loceni.odpadki.regije' - Procent (od nastalih) ločeno zbranih odpadkov po regijah:
-  -'regije' [character] katero regijo opazujemo
-  -'leto' [factor]
-  -'delez' [numeric] procent odpadkov, ki so bili zbrani ločeno
+  - 'regije' [character] katero regijo opazujemo
+  - 'leto' [factor]
+  - 'delez' [numeric] procent odpadkov, ki so bili zbrani ločeno
 
 5. 'investicije.regije' - Investicije v boljše ravnanje z odpadki po regijah:
-  -'regije' [character] katero regijo opazujemo
-  -'leta' [factor]
-  -'1000 EUR' [numeric] investicije v boljše ravnanje z odpadki v 1000 EUR
-  -'% regionalnega BDP' [numeric] investicije v boljše ravnanje z odpadki kot procent regionalnega BDP
+  - 'regije' [character] katero regijo opazujemo
+  - 'leto' [factor]
+  - '1000 EUR' [numeric] investicije v boljše ravnanje z odpadki v 1000 EUR
+  - '% regionalnega BDP' [numeric] investicije v boljše ravnanje z odpadki kot procent regionalnega BDP
 
 6. 'izobrazba.regije' - Izobrazba prebivalcev po regijah (iz leta 2002): 
-  -'regije' [character] katero regijo opazujemo
-  -'osnovnosolska' [numeric] število prebivalcev z osnovnošolsko stopnjo izobrazbe
-  -'srednja izobrazba' [numeric] število prebivalcev z srednjo stopnjo izobrazbe
-  -'visja izobrazba' [numeric] število prebivalcev z višjo stopnjo izobrazbe
+  - 'regije' [character] katero regijo opazujemo
+  - 'osnovnosolska' [numeric] število prebivalcev z osnovnošolsko stopnjo izobrazbe
+  - 'srednja izobrazba' [numeric] število prebivalcev z srednjo stopnjo izobrazbe
+  - 'visja izobrazba' [numeric] število prebivalcev z višjo stopnjo izobrazbe
 
 7. 'starostne.skupine.regije' - Starostne skupine po regijah: 
-  -'regije' [character] katero regijo opazujemo
-  -'leto' [factor]
-  -'0-14' [numeric] število ljudi v starostni skupini 0 do 14 let
-  -'15-64' [numeric] število ljudi v starostni skupini 15 do 64 let
-  -'65+' [numeric] število ljudi v starostni skupini 65 let in več
+  - 'regije' [character] katero regijo opazujemo
+  - 'leto' [factor]
+  - '0-14' [numeric] število ljudi v starostni skupini 0 do 14 let
+  - '15-64' [numeric] število ljudi v starostni skupini 15 do 64 let
+  - '65+' [numeric] število ljudi v starostni skupini 65 let in več
 
 Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 
