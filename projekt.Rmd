@@ -35,19 +35,19 @@ Moj cilj je prikazati, da večja izobraženost in vlaganje v varovanje okolja sp
 
 # Obdelava, uvoz in čiščenje podatkov
 
-```{r uvoz, echo=FALSE, message=FALSE}
+```{r uvoz, echo=FALSE, message=FALSE, warning=FALSE}
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
 Uvozila sem podatke o odlaganju odpadkov v sloveniji v obliki CSV s statističnega urada. Podatke imam v sedmih razpredelnicah v obliki *tidy data*.
 
 1. 'vrsta.odpadkov' - Nastale količine komunalnih odpadkov (v celi Sloveniji) glede na vrsto odpadkov:
-  - 'vrsta odpadkov' [character] pove nam vrsto odpadkov (npr. papir, embalaža itd.)
+  - 'vrsta_odpadkov' [character] pove nam vrsto odpadkov (npr. papir, embalaža itd.)
   - 'leto' [factor] 
   - 'tone' [numeric] koliko ton odpadkov je nastalo
   
 2. 'predelava.odpadkov' - Količina komunalnih odpadkov glede na način predelave: 
-  - 'nacin predelave' [character] pove nam kateri način predelave odpadkov opazujemo
+  - 'nacin_predelave' [character] pove nam kateri način predelave odpadkov opazujemo
   - 'leto' [factor]
   - 'tone' [numeric] koliko ton odpadkov je bilo predelanih (na nek način)
 
@@ -64,14 +64,14 @@ Uvozila sem podatke o odlaganju odpadkov v sloveniji v obliki CSV s statistične
 5. 'investicije.regije' - Investicije v boljše ravnanje z odpadki po regijah:
   - 'regije' [character] katero regijo opazujemo
   - 'leto' [factor]
-  - '1000 EUR' [numeric] investicije v boljše ravnanje z odpadki v 1000 EUR
-  - '% regionalnega BDP' [numeric] investicije v boljše ravnanje z odpadki kot procent regionalnega BDP
+  - '1000_EUR' [numeric] investicije v boljše ravnanje z odpadki v 1000 EUR
+  - 'delez_regionalnega_BDP' [numeric] investicije v boljše ravnanje z odpadki kot procent regionalnega BDP
 
 6. 'izobrazba.regije' - Izobrazba prebivalcev po regijah (iz leta 2002): 
   - 'regije' [character] katero regijo opazujemo
   - 'osnovnosolska' [numeric] število prebivalcev z osnovnošolsko stopnjo izobrazbe
-  - 'srednja izobrazba' [numeric] število prebivalcev z srednjo stopnjo izobrazbe
-  - 'visja izobrazba' [numeric] število prebivalcev z višjo stopnjo izobrazbe
+  - 'srednja_izobrazba' [numeric] število prebivalcev z srednjo stopnjo izobrazbe
+  - 'visja_izobrazba' [numeric] število prebivalcev z višjo stopnjo izobrazbe
 
 7. 'starostne.skupine.regije' - Starostne skupine po regijah: 
   - 'regije' [character] katero regijo opazujemo
@@ -82,14 +82,36 @@ Uvozila sem podatke o odlaganju odpadkov v sloveniji v obliki CSV s statistične
 
 Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 
-Stolpični diagram prikazuje podatke iz tabele nastali.odpadki.regije za leto 2017 - količina nastalih odpadkov za statistične regije Sovenije.
+# Analiza in vizualizacija podatkov
 
-```{r odpadki_po_regijh_2017, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap='Stolpični diagram nastalh odpadkov v letu 2017 za statistične regije Slovenije'}
-ggplot(nastali.odpadki.regije %>% filter(regije != 'SLOVENIJA', leto == 2017)) + aes(x=regije, y=tone) + geom_col() + xlab("Statistične regije") + ylab("Nastali odpadki (tone)") + ggtitle("Stolpični diagram nastalh odpadkov v letu 2017 za statistične regije Slovenije") +  theme(axis.text.x = element_text(angle = 90, vjust = 0.3, hjust=1))
+```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+source("vizualizacija/vizualizacija.r", encoding="UTF-8")
+```
+
+Najprej sem si ogledala stanje skozi leta, v celi Sloveniji. Vidimo, da vedno več ločujemo; Najhitreje se je stanje spreminjalo med letoma 2007 in 2012, v zadnjih nekaj letih pa se je rest nekoliko ustavila. Najbolj se je povečala količina ločene embalaže.
+
+```{r graf_locevanje_skozi_leta, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+graf.locevanje.skozi.leta + xlab("Leto") + ylab("Tone zbranih odpadkov") + ggtitle("Graf ločenih odpadkov po vrstah") + labs(color="Vrsta odpadkov")
 
 ```
 
-# Analiza in vizualizacija podatkov
+Na podatkih iz let 2002 za stopnjo izobraženosti po regijah sem si ogledala, ali obstaja kakšna povezava med izobraženostjo in stopnjo ločevanja odpadkov. Iz grafa je razvidno, da se takšne povezave ne da najti;
+
+```{r graf_izobrazba_locevanje, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+graf.izobazba.in.locevanje + xlab("Delež prebivalstva z določeno stopnjo izobrazbe") + ylab("Delež ločenih odpadkov (od nastalih)") + ggtitle("Graf povezave med izobraženostjo in ločevanjem odpadkov v letu 2002") + labs(color="Stopnja izobrazbe")
+
+```
+
+Naslednja dva grafa kažeta povezavo med starostjo prebivalstva in stopnjo ločevanja odpadkov. Na prvi pogled bi si mislili, da večji kot je delež odraslih v populaciji oz. regiji, manjša je stopnja ločevanja, in obratno, večji kot je delež starejšega prebivalstva, večja je stopnja ločevanja. Ko pa dodamo obarvanost točk po letih, opazimo, da v resnici vidimo povezavo med leti in stopnjo ločevanja odpadkov. Z leti se je namreč prebivalstvo staralo, torej se je povsod zmanjšal delež odraslih in povečal delež starejših, medtem ko je skozi leta stopnja ločevanja povsod naraščala. Ko sem se omejila samo na eno leto, ni graf pokazal nobene povezave med starostjo in stopnjo ločevanja.
+
+```{r graf_starost_locevanje_odrasli, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+graf.starost.in.locevanje.odrasli + xlab("Delež odraslih") + ylab("Delež ločenih odpadkov (od nastalih)") + ggtitle("Graf povezave med starostjo prebivalstva in ločevanjem odpadkov za odrasle") + labs(color="Leto")
+
+```
+```{r graf_starost_locevanje_starejsi, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',}
+graf.starost.in.locevanje.starejsi + xlab("Delež starejših") + ylab("Delež ločenih odpadkov (od nastalih)") + ggtitle("Graf povezave med starostjo prebivalstva in ločevanjem odpadkov za starejše") + labs(color="Leto")
+
+```
 
 Najprej bi si rada pogledala katera regija proizvede največ odpadkov na prebivalca in katera največ ločuje, ter si ogledala ali se to spreminja s časom.
 Potem bi rada prikazala povezave med izobraženostjo prebivalstva in količino ločenih odpadkov (primerjava po regijah za leto 2002), morebitno povezavo med starostjo prebivalstva in količino nastalih oz. ločenih odpadkov, povezavo med investiranjem v boljše ravnanje z odpadki  in procentom ločeno zbranih odpadkov (primerjava glede na regije ali pa morda ena regija v času).

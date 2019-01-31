@@ -60,7 +60,7 @@ investicije.regije1 <- melt(data6, id.vars="regije", measure.vars=names(data6)[-
 
 
 #Funkcija, ki uvozi podatke iz datoteke T5investicije_za_varstvo_okolja_po_regijah-indeksi_regionalnega_bdp.csv
-data7 <- read_delim("podatki/T5T5investicije_za_varstvo_okolja_po_regijah-indeksi_regionalnega_bdp.csv", delim=";", skip=5, n_max=13, 
+data7 <- read_delim("podatki/T5investicije_za_varstvo_okolja_po_regijah-indeksi_regionalnega_bdp.csv", delim=";", skip=5, n_max=13, 
                     col_names=c("regije", 2001:2016),
                     locale=locale(encoding="Windows-1250",decimal_mark="."))
 
@@ -87,8 +87,8 @@ data9 <- read_csv2("podatki/T6visja_po_regijah.csv", skip=3, n_max=13,
 data9["visja_izobrazba"] <- apply(data9[-1], 1, sum)
 
 
-#Funkcija, ki uvozi podatke iz datoteke T6osnovnosolska po regijah.csv
-data10 <- read_csv2("podatki/T6osnovnosolska po regijah.csv", skip=3, n_max=13, 
+#Funkcija, ki uvozi podatke iz datoteke T6osnovnosolska_po_regijah.csv
+data10 <- read_csv2("podatki/T6osnovnosolska_po_regijah.csv", skip=3, n_max=13, 
                    col_names=c("regije","osnovnosolska"),
                    locale=locale(encoding="Windows-1250"))
 
