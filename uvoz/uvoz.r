@@ -13,8 +13,8 @@ data1$vrsta_odpadkov <- c("skupaj", "embalaza", "papir", "steklo", "kuhinjski_od
 vrsta.odpadkov <- melt(data1, id.vars="vrsta_odpadkov", measure.vars=names(data1)[-1],
                        variable.name="leto", value.name="tone", na.rm=TRUE)
 
-#Funkcija, ki uvozi podatke iz datoteke T2predelava odpadkov(tone).csv
-data2 <- read_csv2("podatki/T2predelava odpadkov(tone).csv", skip=5, n_max=9, na=c("-","..."),
+#Funkcija, ki uvozi podatke iz datoteke T2predelava_odpadkov-tone.csv
+data2 <- read_csv2("podatki/T2predelava_odpadkov-tone.csv", skip=5, n_max=9, na=c("-","..."),
                    col_names=c("zbris","nacin_predelave",2002:2017),
                    locale=locale(encoding="Windows-1250"))
 
@@ -23,8 +23,8 @@ data2 <- data2[,c("nacin_predelave",2002:2017)]
 predelava.odpadkov <- melt(data2, id.vars="nacin_predelave", measure.vars=names(data2)[-1],
                           variable.name="leto", value.name="tone", na.rm=TRUE)
 
-#Funkcija, ki uvozi podatke iz datoteke T3nastali odpadki po regijah(tone).csv
-data3 <- read_csv2("podatki/T3nastali odpadki po regijah(tone).csv", skip=5, n_max=15, 
+#Funkcija, ki uvozi podatke iz datoteke T3nastali_odpadki_po_regijah-tone.csv
+data3 <- read_csv2("podatki/T3nastali_odpadki_po_regijah-tone.csv", skip=5, n_max=15, 
                    col_names=c("regije", 2010:2017),
                    locale=locale(encoding="Windows-1250"))
 
@@ -37,8 +37,8 @@ data3$regije <- regije
 nastali.odpadki.regije <- melt(data3, id.vars="regije", measure.vars=names(data3)[-1],
                                variable.name="leto", value.name="tone", na.rm=TRUE)
 
-#Funkcija, ki uvozi podatke iz datoteke T4procent loceno zbranih odpadkov po regijah.csv
-data5 <- read_delim("podatki/T4procent loceno zbranih odpadkov po regijah.csv", delim=";", skip=5, n_max=15, 
+#Funkcija, ki uvozi podatke iz datoteke T4procent_loceno_zbranih_odpadkov_po_regijah.csv
+data5 <- read_delim("podatki/T4procent_loceno_zbranih_odpadkov_po_regijah.csv", delim=";", skip=5, n_max=15, 
                    col_names=c("regije", 2002:2017),
                   locale=locale(encoding="Windows-1250",decimal_mark="."))
 
@@ -48,8 +48,8 @@ data5$regije <- regije
 loceni.odpadki.regije <- melt(data5, id.vars="regije", measure.vars=names(data5)[-1],
                               variable.name="leto", value.name="delez", na.rm=TRUE)
 
-#Funkcija, ki uvozi podatke iz datoteke T5investicije po regijah (1000eur).csv
-data6 <- read_csv2("podatki/T5investicije po regijah (1000eur).csv", skip=4, n_max=13, 
+#Funkcija, ki uvozi podatke iz datoteke T5investicije_po_regijah-1000eur.csv
+data6 <- read_csv2("podatki/T5investicije_po_regijah-1000eur.csv", skip=4, n_max=13, 
                    col_names=c("regije", 2001:2016),
                    locale=locale(encoding="Windows-1250"))
 
@@ -59,8 +59,8 @@ investicije.regije1 <- melt(data6, id.vars="regije", measure.vars=names(data6)[-
                           variable.name="leto", value.name="1000_EUR", na.rm=TRUE)
 
 
-#Funkcija, ki uvozi podatke iz datoteke T5investicije za varstvo okolja po regijah(indeksi regionalnega bdp).csv
-data7 <- read_delim("podatki/T5investicije za varstvo okolja po regijah(indeksi regionalnega bdp).csv", delim=";", skip=5, n_max=13, 
+#Funkcija, ki uvozi podatke iz datoteke T5investicije_za_varstvo_okolja_po_regijah-indeksi_regionalnega_bdp.csv
+data7 <- read_delim("podatki/T5T5investicije_za_varstvo_okolja_po_regijah-indeksi_regionalnega_bdp.csv", delim=";", skip=5, n_max=13, 
                     col_names=c("regije", 2001:2016),
                     locale=locale(encoding="Windows-1250",decimal_mark="."))
 
@@ -74,13 +74,13 @@ investicije.regije2 <- melt(data7, id.vars="regije", measure.vars=names(data7)[-
 investicije.regije = data.frame(investicije.regije1, investicije.regije2[3])
 names(investicije.regije) = c(names(investicije.regije1), "delez_regionalnega_BDP")
 
-#Funkcija, ki uvozi podatke iz datoteke T6srednja po regijah.csv
-data8 <- read_csv2("podatki/T6srednja po regijah.csv", skip=3, n_max=13, 
+#Funkcija, ki uvozi podatke iz datoteke T6srednja_po_regijah.csv
+data8 <- read_csv2("podatki/T6srednja_po_regijah.csv", skip=3, n_max=13, 
                    col_names=c("regije", "srednja_izobrazba"),
                    locale=locale(encoding="Windows-1250"))
 
-#Funkcija, ki uvozi podatke iz datoteke T6visja po regijah.csv
-data9 <- read_csv2("podatki/T6visja po regijah.csv", skip=3, n_max=13, 
+#Funkcija, ki uvozi podatke iz datoteke T6visja_po_regijah.csv
+data9 <- read_csv2("podatki/T6visja_po_regijah.csv", skip=3, n_max=13, 
                    col_names=c("regije", 1:3 ),
                    locale=locale(encoding="Windows-1250"))
 
