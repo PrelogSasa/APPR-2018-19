@@ -82,16 +82,28 @@ Uvozila sem podatke o odlaganju odpadkov v sloveniji v obliki CSV s statistične
 
 Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 
+Graf prikazuje delež ločenih odpadkov (od nastalih) po regijah od leta 2002 do 2017:
+```{r graf_loceni_regije, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(loceni.odpadki.regije %>% filter(regije != "Slovenija")) + aes(x=leto, y=delez, group=regije, color=regije) + geom_line() + xlab("Leto") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf deleža ločenih odpadkov po regijah") + scale_color_discrete(name="Regije", labels=c("Gorenjska", "Goriška", "Jugovzhodna Slovenija", "Koroška", "Obalno-kraška", "Osrednjeslovenska", "Podravska", "Pomurska", "Posavska", "Primorsko-notranjska", "Savinjska", "Zasavska"))
+
+```
+
+
 # Analiza in vizualizacija podatkov
 
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Najprej sem si ogledala stanje skozi leta za celo Slovenijo. Videti je da vedno več ločujemo - najhitreje se je stanje spreminjalo med letoma 2007 in 2012, v zadnjih nekaj letih pa se je rest nekoliko ustavila. Najbolj se je povečala količina ločene embalaže.
-
 ```{r graf_locevanje_skozi_leta, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 graf.locevanje.skozi.leta + xlab("Leto") + ylab("Tone zbranih odpadkov") + ggtitle("Graf ločenih odpadkov po vrstah") + labs(color="Vrsta odpadkov")
+
+```
+
+Najprej sem si ogledala stanje skozi leta za celo Slovenijo. Videti je, da vedno več ločujemo - najhitreje se je stanje spreminjalo med letoma 2007 in 2013, v zadnjih nekaj letih pa se je rast nekoliko ustavila. Iz spodnjega grafa lahko tudi vidimo, da smo z leti uspeli zmanjšati količino nastalih odpadkov na prebivalca, čeprav se od leta 2013 ta številka spet nekoliko dviguje. Najbolj se je povečala količina ločene embalaže (kot vidimo iz zgornjega grafa). Če primerjamo še regije med sabo, lahko opazimo, da je Koroška, ki je leta 2002 ločila največji delež odpadkov, leta 2017 padla na zadnje mesto, medtem ko je Osrednjeslovenska regija najbolj povečala delež odpadkov, ki jih ločeno zbere, saj je iz zadnjega mesta do leta 2017 skočila na prvo. Ti dve regiji sta zanimivi tudi zato, ker Koroška skozi leta večinoma proizvaja najmanj odpadkov na prebivalca, medtem ko je Osrednjeslovenska regija med prvimi tremi regijami z največ preoizvedenimi odpadki na prebivalca.
+
+```{r graf_nastali_regije, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+graf.nastali.regije + xlab("Leto") + ylab("Kilogrami nastalih odpadkov na prebivalca") + ggtitle("Graf nastalih odpadkov po regijah") + scale_color_discrete(name="Regije", labels=c("Gorenjska", "Goriška", "Jugovzhodna Slovenija", "Koroška", "Obalno-kraška", "Osrednjeslovenska", "Podravska", "Pomurska", "Posavska", "Primorsko-notranjska", "Savinjska", "Zasavska"))
 
 ```
 
@@ -127,9 +139,6 @@ graf.investicije.in.locevanje.savinjska + xlab("Delež regionalnega BDP namenjen
 
 ```
 
-
-(Najprej bi si rada pogledala katera regija proizvede največ odpadkov na prebivalca in katera največ ločuje, ter si ogledala ali se to spreminja s časom.
- povezavo med investiranjem v boljše ravnanje z odpadki  in procentom ločeno zbranih odpadkov (primerjava glede na regije ali pa morda ena regija v času).)
 
 # Napredna analiza podatkov
 
