@@ -71,8 +71,7 @@ investicije.regije2 <- melt(data7, id.vars="regije", measure.vars=names(data7)[-
                             variable.name="leto", value.name="delez_regionalnega_BDP", na.rm=TRUE)
 
 #Funkcija, ki združi podatke o investicijah v eno tabelo
-investicije.regije = data.frame(investicije.regije1, investicije.regije2[3])
-names(investicije.regije) = c(names(investicije.regije1), "delez_regionalnega_BDP")
+investicije.regije <- right_join(investicije.regije1, investicije.regije2)
 
 #Funkcija, ki uvozi podatke iz datoteke T6srednja_po_regijah.csv
 data8 <- read_csv2("podatki/T6srednja_po_regijah.csv", skip=3, n_max=13, 
@@ -132,7 +131,7 @@ starostne.skupine.regije3 <- melt(data13, id.vars="regije", measure.vars=names(d
                                   variable.name="leto", value.name="65+", na.rm=TRUE)
 
 #Funkcija, ki zdruzi podatke o starostnih skupinah v eno tabelo
-starostne.skupine.regije = data.frame(starostne.skupine.regije1, starostne.skupine.regije2[3], starostne.skupine.regije3[3])
-names(starostne.skupine.regije)[3:5] = c(names(starostne.skupine.regije1[3]), names(starostne.skupine.regije2[3]), names(starostne.skupine.regije3[3]))
+starostne.skupine.regije <- right_join(starostne.skupine.regije1, starostne.skupine.regije2)
+starostne.skupine.regije <- right_join(starostne.skupine.regije, starostne.skupine.regije3)
 
 

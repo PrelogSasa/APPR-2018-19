@@ -38,7 +38,24 @@ graf.starost.in.locevanje.starejsi <- ggplot(right_join(tabela2, loceni.odpadki.
 graf.starost.in.locevanje.odrasli <- ggplot(right_join(tabela2, loceni.odpadki.regije)) + aes(x=delez_odr , y=delez) + geom_point(aes(color=leto)) + geom_smooth()
 graf.starost.in.locevanje.2017 <- ggplot(right_join(tabela2, loceni.odpadki.regije) %>% filter(leto == 2017)) + aes(x=delez_sta , y=delez) + geom_point() + geom_smooth()
 
+#graf povezanosti starosti in nastalih odpadkov
+graf.starost.in.nastali.odrasli <- ggplot(right_join(tabela2 %>% filter(leto %in% 2010:2017), nastali.odpadki.regije)) + aes(x=delez_odr , y=tone) + geom_point(aes(color = regije)) + geom_smooth()
 
+#graf povezansti investicij in ločevanja odpadkov
+graf.investicije.in.locevanje <- ggplot(right_join(investicije.regije %>% filter(leto %in% 2002:2016), loceni.odpadki.regije %>% filter(leto %in% 2002:2016)) %>% filter(regije != "Slovenija", delez_regionalnega_BDP < 5)) +
+  aes(x=delez_regionalnega_BDP , y=delez) + geom_point(aes(color = regije)) + geom_smooth(method = "lm")
+
+tabela3 <- right_join(investicije.regije %>% filter(leto %in% 2002:2016), starostne.skupine.regije[c("regije", "leto", "skupaj")] %>% filter(leto %in% 2002:2016))
+tabela3$eur_na_preb <- tabela3$`1000_EUR` * 1000 / tabela3$skupaj
+
+graf.investicije.in.locevanje.1000 <- ggplot(right_join(tabela3, loceni.odpadki.regije %>% filter(leto %in% 2002:2016)) %>% filter(regije != "Slovenija", eur_na_preb < 500)) +
+  aes(x=eur_na_preb , y=delez) + geom_point(aes(color=regije)) + geom_smooth()
+
+graf.investicije.in.locevanje.posavska <- ggplot(right_join(tabela3, loceni.odpadki.regije %>% filter(leto %in% 2002:2016)) %>% filter(regije == "Posavska")) +
+  aes(x=eur_na_preb , y=delez) + geom_point() + geom_smooth(method = "lm")
+
+graf.investicije.in.locevanje.savinjska <- ggplot(right_join(investicije.regije %>% filter(leto %in% 2002:2016), loceni.odpadki.regije %>% filter(leto %in% 2002:2016)) %>% filter(regije == "Savinjska", delez_regionalnega_BDP < 5)) +
+  aes(x=delez_regionalnega_BDP , y=delez, group=1) + geom_point() + geom_path()
 
 # Uvozimo zemljevid.
 

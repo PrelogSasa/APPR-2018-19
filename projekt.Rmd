@@ -98,23 +98,38 @@ graf.locevanje.skozi.leta + xlab("Leto") + ylab("Tone zbranih odpadkov") + ggtit
 Na podatkih iz let 2002 za stopnjo izobraženosti po regijah sem si ogledala, ali obstaja kakšna povezava med izobraženostjo in stopnjo ločevanja odpadkov. Iz grafa je razvidno, da se takšne povezave ne da najti;
 
 ```{r graf_izobrazba_locevanje, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-graf.izobazba.in.locevanje + xlab("Delež prebivalstva z določeno stopnjo izobrazbe") + ylab("Delež ločenih odpadkov (od nastalih)") + ggtitle("Graf povezave med izobraženostjo in ločevanjem odpadkov v letu 2002") + labs(color="Stopnja izobrazbe")
+graf.izobazba.in.locevanje + xlab("Delež prebivalstva z določeno stopnjo izobrazbe") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf povezave med izobraženostjo in ločevanjem odpadkov v letu 2002") + labs(color="Stopnja izobrazbe")
 
 ```
 
 Naslednja dva grafa kažeta povezavo med starostjo prebivalstva in stopnjo ločevanja odpadkov. Na prvi pogled bi si mislili, da večji kot je delež odraslih v populaciji oz. regiji, manjša je stopnja ločevanja, in obratno, večji kot je delež starejšega prebivalstva, večja je stopnja ločevanja. Ko pa dodamo obarvanost točk po letih, opazimo, da v resnici vidimo povezavo med leti in stopnjo ločevanja odpadkov. Z leti se je namreč prebivalstvo staralo, torej se je povsod zmanjšal delež odraslih in povečal delež starejših, medtem ko je skozi leta stopnja ločevanja povsod naraščala. Ko sem se omejila samo na eno leto, ni graf pokazal nobene povezave med starostjo in stopnjo ločevanja.
 
 ```{r graf_starost_locevanje_odrasli, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-graf.starost.in.locevanje.odrasli + xlab("Delež odraslih") + ylab("Delež ločenih odpadkov (od nastalih)") + ggtitle("Graf povezave med starostjo prebivalstva in ločevanjem odpadkov za odrasle") + labs(color="Leto")
+graf.starost.in.locevanje.odrasli + xlab("Delež odraslih") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf povezave med starostjo prebivalstva in ločevanjem odpadkov za odrasle") + labs(color="Leto")
 
 ```
 ```{r graf_starost_locevanje_starejsi, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',}
-graf.starost.in.locevanje.starejsi + xlab("Delež starejših") + ylab("Delež ločenih odpadkov (od nastalih)") + ggtitle("Graf povezave med starostjo prebivalstva in ločevanjem odpadkov za starejše") + labs(color="Leto")
+graf.starost.in.locevanje.starejsi + xlab("Delež starejših") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf povezave med starostjo prebivalstva in ločevanjem odpadkov za starejše") + labs(color="Leto")
 
 ```
 
+Zadala sem si pokazati tudi povezavo med vlaganjem v boljše ravnanje z odpadki in dejanskim deležem ločeih odpadkov. Iz naslednje tabele lahko kljub zelo razpršenim podatkom vidimo rahlo povezavo med deležem regionalnega BDP namenjenega za boljše ravnanje z odpadki in deležem ločenih odpadkov, predvsem pri višjih procentih regionalnega BDP namenjenega ravnanju z odpadki.
+
+```{r graf_investicije_locevanje, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',}
+graf.investicije.in.locevanje + xlab("Delež regionalnega BDP namenjenega za boljše ravnanje z odpadki v %") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf povezave med investiranjem v boljše ravnanje z odpadki in ločevanjem odpadkov") + scale_color_discrete(name="Regije", labels=c("Gorenjska", "Goriška", "Jugovzhodna Slovenija", "Koroška", "Obalno-kraška", "Osrednjeslovenska", "Podravska", "Pomurska", "Posavska", "Primorsko-notranjska", "Savinjska", "Zasavska"))
+
+```
+
+Veliko bolj nazorno pa vidimo povezavo na naslednjem grafu, ki prikazuje podatke samo za Savinjsko regijo, ki ima kar nekaj visokih odstotkov vlaganja v okolje. Točke na grafu sem povezala s potjo ki gre povrsti od leta 2002 do leta 2016, da vidimo kako so si točke sledile kronološko. Vsakič, ko Savinjska veliko vloži v okolje, naslednje leto vidimo višji odstotek ločenih odpadkov, ko pa je zadnji dve leti bistveno manj vložla v boljše ravnanje z odpadki kot prejšnja leta, se odstotek ločenih odpadkov nekoliko zmanjša.
+
+```{r graf_investicije_locevanje_savinjska, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',}
+graf.investicije.in.locevanje.savinjska + xlab("Delež regionalnega BDP namenjenega za boljše ravnanje z odpadki v %") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf povezave med investiranjem v boljše ravnanje z odpadki in ločevanjem odpadkov za Savinjsko regijo")
+
+```
+
+
 (Najprej bi si rada pogledala katera regija proizvede največ odpadkov na prebivalca in katera največ ločuje, ter si ogledala ali se to spreminja s časom.
- morebitno povezavo med starostjo prebivalstva in količino nastalih oz. ločenih odpadkov, povezavo med investiranjem v boljše ravnanje z odpadki  in procentom ločeno zbranih odpadkov (primerjava glede na regije ali pa morda ena regija v času).)
+ povezavo med investiranjem v boljše ravnanje z odpadki  in procentom ločeno zbranih odpadkov (primerjava glede na regije ali pa morda ena regija v času).)
 
 # Napredna analiza podatkov
 
