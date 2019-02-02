@@ -70,5 +70,5 @@ graf.investicije.in.locevanje.savinjska <- ggplot(right_join(investicije.regije 
 
 
 # Uvozimo zemljevid.
-#zemljevid <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2.8/shp/SVN_adm_shp.zip",
-#                             "SVN_adm1", mapa = "zemljevid_Slovenije", encoding = "UTF-8") %>% fortify()
+zemljevid <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2.8/shp/SVN_adm_shp.zip",
+                             "SVN_adm1", mapa = "zemljevid_Slovenije", encoding = "UTF-8") %>% fortify()

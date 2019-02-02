@@ -1,11 +1,12 @@
 # Uvoz potrebnih knjižnic
+library(rgeos)
 library(rgdal)
 library(dplyr)
 library(readr)
 library(ggplot2)
 library(digest)
 library(mosaic)
-library(rgeos)
+
 
 
 # Funkcija uvozi.zemljevid(url, ime.zemljevida, pot.zemljevida="",
