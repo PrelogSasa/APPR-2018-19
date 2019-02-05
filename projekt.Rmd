@@ -85,7 +85,7 @@ Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 
 Graf prikazuje delež ločenih odpadkov (od nastalih) po regijah od leta 2002 do 2017:
 ```{r graf_loceni_regije, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(loceni.odpadki.regije %>% filter(regije != "Slovenija")) + aes(x=leto, y=delez, group=regije, color=regije) + geom_line() + xlab("Leto") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf deleža ločenih odpadkov po regijah") + scale_color_discrete(name="Regije", labels=c("Gorenjska", "Goriška", "Jugovzhodna Slovenija", "Koroška", "Obalno-kraška", "Osrednjeslovenska", "Podravska", "Pomurska", "Posavska", "Primorsko-notranjska", "Savinjska", "Zasavska"))
+ggplot(loceni.odpadki.regije %>% filter(regije != "Slovenija")) + aes(x=leto, y=delez, group=regije, color=regije) + geom_line() + xlab("Leto") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf deleža ločenih odpadkov po regijah") + scale_color_discrete(name="Regije", labels=c("Gorenjska", "Goriška", "Jugovzhodna Slovenija", "Koroška", "Obalno-kraška", "Osrednjeslovenska", "Podravska", "Pomurska", "Posavska", "Primorsko-notranjska", "Savinjska", "Zasavska")) + theme(axis.text.x = element_text(angle = 90, vjust = 0.3, hjust=1))
 
 ```
 
@@ -97,7 +97,7 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
 ```{r graf_locevanje_skozi_leta, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-graf.locevanje.skozi.leta + xlab("Leto") + ylab("Tone zbranih odpadkov") + ggtitle("Graf ločenih odpadkov po vrstah") + scale_color_discrete(name="Vrsta odpadkov", labels=c("Drugo", "Embalaža", "Papir", "Steklo"))
+graf.locevanje.skozi.leta + xlab("Leto") + ylab("Tone zbranih odpadkov") + ggtitle("Graf ločenih odpadkov po vrstah") + scale_color_discrete(name="Vrsta odpadkov", labels=c("Drugo", "Embalaža", "Papir", "Steklo")) + theme(axis.text.x = element_text(angle = 90, vjust = 0.3, hjust=1))
 
 ```
 
