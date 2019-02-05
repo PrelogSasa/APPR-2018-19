@@ -29,5 +29,5 @@ graf.zemljevid <- function(st){
 graf.regije <- function(regija){
   ggplot(loceni.odpadki.regije %>% filter(regije %in% regija)) + aes(x=leto, y=delez, group=regije, color=regije) +
     geom_line() + geom_point()+ xlab("Leto") + ylab("Delež ločenih odpadkov (od nastalih) v %") +
-    ggtitle("Graf deleža ločenih odpadkov")
+    ggtitle("Graf deleža ločenih odpadkov") + theme(axis.text.x = element_text(angle = 90, vjust = 0.3, hjust=1))
 }
