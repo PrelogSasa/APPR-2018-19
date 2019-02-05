@@ -33,10 +33,7 @@ tabela1 <- right_join(izobrazba.regije, loceni.odpadki.regije %>% filter(leto ==
 tabela1 <- right_join(tabela1, starostne.skupine.regije[c(1,2,5)]%>%filter(leto==2002))
 tabela1$delez_izobr <- tabela1$stevilo / tabela1$skupaj
 
-graf.izobazba.in.locevanje <- ggplot(tabela1) + geom_point(aes(x=delez_izobr, y=delez, color=izobrazba)) + 
-  geom_smooth(data=tabela1%>%filter(izobrazba=="srednja"), aes(x=delez_izobr, y=delez, color="srednja"), method = "lm") +
-  geom_smooth(data=tabela1%>%filter(izobrazba=="visja"), aes(x=delez_izobr, y=delez, color="visja"), method = "lm") + 
-  geom_smooth(data=tabela1%>%filter(izobrazba=="osnovna"), aes(x=delez_izobr, y=delez, color="osnovna"), method = "lm")
+graf.izobazba.in.locevanje <- ggplot(tabela1) + geom_point(aes(x=delez_izobr, y=delez, color=izobrazba))
 
 #grafi povezanosti starosti in ločevanja odpadkov
 tabela2 <- starostne.skupine.regije %>% mutate(delez_sta = stevilo / skupaj)
@@ -52,8 +49,8 @@ graf.starost.in.nastali.odrasli <- ggplot(right_join(tabela2 %>% filter(leto %in
 graf.investicije.in.locevanje <- ggplot(right_join(investicije.regije %>% filter(leto %in% 2002:2016), loceni.odpadki.regije %>% filter(leto %in% 2002:2016)) %>% filter(regije != "Slovenija", delez_regionalnega_BDP < 5)) +
   aes(x=delez_regionalnega_BDP , y=delez) + geom_point(aes(color = regije)) + geom_smooth(method = "lm")
 
-tabela3 <- right_join(investicije.regije %>% filter(leto %in% 2002:2016), starostne.skupine.regije[c("regije", "leto", "skupaj")] %>% filter(leto %in% 2002:2016))
-tabela3 <- tabela3 %>% mutate(eur_na_preb = `1000_EUR` * 1000 / skupaj)
+tabela3 <- right_join(investicije.regije %>% filter(leto %in% 2002:2016), starostne.skupine.regije[c("regije", "leto","starostna_skupina", "skupaj")] %>% filter(leto %in% 2002:2016, starostna_skupina == "0-14"))
+tabela3 <- tabela3 %>% mutate(eur_na_preb = `1000_EUR` * 1000 / skupaj, starostna_skupina = NULL)
 
 graf.investicije.in.locevanje.1000 <- ggplot(right_join(tabela3, loceni.odpadki.regije %>% filter(leto %in% 2002:2016)) %>% filter(regije != "Slovenija", eur_na_preb < 500)) +
   aes(x=eur_na_preb , y=delez) + geom_point(aes(color=regije)) + geom_smooth()

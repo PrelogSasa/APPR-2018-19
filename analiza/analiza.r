@@ -20,7 +20,7 @@ graf.zemljevid <- function(st){
   k <- kmeans(podatki.norm, st, nstart=1000)
   skupine <- data.frame(regije=row.names(podatki.norm), skupine=factor(k$cluster))
   ggplot(right_join(zemljevid,skupine, by=c("NAME_1"="regije"))) + geom_polygon() + 
-                      aes(x=long, y=lat, group=group, fill=skupine) + xlab("") + ylab("")
+                      aes(x=long, y=lat, group=group, fill=skupine) + xlab("") + ylab("") + theme_minimal()
 
 }
 

@@ -7,17 +7,17 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2018/19
 
 ## Analiza odlaganja odpadkov v Sloveniji
 
-V svojem projektu si bom ogledala odlaganje odpadkov in ravnanje z njimi skozi leta v Sloveniji. Primerjala bom statistične regije po količini odpadkov, ki jih proizvedejo posamezniki, primerjala jih bom tudi po količini odpadkov na prebivalca. Poskusila bom poiskati povezave med starostjo in izobraženostjo prebivalcev ter količino odpadkov, ki jih proizvedejo. Rada bi našla tudi povezave med vlaganjem regij v varovanje okolja in količino proizvedenih odpadkov, ter količino ločenih odpadkov.
+V svojem projektu si bom ogledala odlaganje odpadkov in ravnanje z njimi skozi leta v Sloveniji. Primerjala bom statistične regije po količini odpadkov na prebivalca in po tem koliko jih ločujejo. Poskusila bom poiskati povezave med starostjo in izobraženostjo prebivalcev ter količino odpadkov, ki jih ločijo. Rada bi našla tudi povezave med vlaganjem regij v varovanje okolja in količino proizvedenih odpadkov, ter količino ločenih odpadkov.
 
 Moj cilj je prikazati, da večja izobraženost in vlaganje v varovanje okolja spreminjajo, kako ravnamo z odpadki.
 
-* Tabela 1: Nastale količine komunalnih odpadkov glede na vrsto odpadkov: vrsta odpadkov, leto, tone
-* Tabela 2: Količina komunalnih odpadkov glede na način predelave: način predelave, leto, tone
-* Tabela 3: Količina nastalih odpadkov v tonah po regijah: regije, leto, tone
-* Tabela 4: Procent  (od nastalih) ločeno zbranih odpadkov po regijah: regije, leto, delez
-* Tabela 5: Investicije v boljše ravnanje z odpadki po regijah: regije, leta, 1000 EUR, % od regionalnega BDP
-* Tabela 6: Izobrazba po regijah (iz 2002): regije, osnovnosolska, srednja izobrazba, visja izobrazba
-* Tabela 7: Starostne skupine po regijah: regije, leta, 0-14, 15-64, 65+
+* vrsta.odpadkov: Nastale količine komunalnih odpadkov glede na vrsto odpadkov: vrsta_odpadkov, leto, tone
+* predelava.odpadkov: Količina komunalnih odpadkov glede na način predelave: nacin_predelave, leto, tone
+* nastali.odpadki.regije: Količina nastalih odpadkov v tonah po regijah: regije, leto, tone
+* loceni.odpadki.regije: Procent  (od nastalih) ločeno zbranih odpadkov po regijah: regije, leto, delez
+* investicije.regije: Investicije v boljše ravnanje z odpadki po regijah: regije, leto, 1000_EUR, delez_regionalnega_BDP
+* izobrazba.regije: Izobrazba po regijah (iz 2002): regije, stevilo, izobrazba
+* starostne.skupine.regije: Starostne skupine po regijah: regije, leto, stevilo, starostna_skupina
 
 Vir podatkov: [SURS](https://pxweb.stat.si/pxweb/Database/Okolje/Okolje.asp)
 
