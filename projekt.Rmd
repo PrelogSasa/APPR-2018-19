@@ -142,9 +142,14 @@ graf.investicije.in.locevanje.savinjska + xlab("Delež regionalnega BDP namenjen
 
 
 # Napredna analiza podatkov
+
 ```{r analiza, echo=FALSE, message=FALSE, warning=FALSE}
 source("analiza/analiza.r", encoding="UTF-8")
 ```
+
+Za konec sem naredila še aplikacijo Shiny, v kateri prikažem razvrščanje v skupine (po regijah) glede na vlaganje in starost prebivalstva za leto 2015, in pa v drugem zavihku interaktivni graf deleža ločenih odpadkov skozi leta za regije Slovenije. Za graf razvrščanja v skupine lahko izberemo število skupin, v katere želmo, da program razvrsti regije in če izberemo 3, lahko vidimo da sta v eni skupini Osrednjeslovenska in Gorenjska regija, ki sta v letu 2015 res ločili največji procent nastalih odpadkov. Po drugi strani pa sta od ostalih regij v drugi skupini ločeni še Goriška in Primorsko-notranjska regija, ki pa sta v letu 2015 kar se tiče ločevanja odpadkov približno na sredini vseh regij, torej nista ločili ne veliko ne malo odpadkov. 
+
+Moj zaključek je torej, da so si regije veliko bolj podobne kot sem pričakovala (v vseh se je s približno isto hitrostjo staralo prebivalstvo, vse regije so bistveno povečale delež odpadkov, ki jih ločijo od leta 2002 do 2016) in da razen investiranja, ki nekoliko vpliva na delež ločenih odpadkov, ostale premenljivke, za katere sem na začetku menila, da imajo precej velik vpliv, nimajo opaznega vpliva na delež ločenih odpadkov. Tako tudi ne morem najti 'recepta', ki bi zagotovil boljše ločevanje odpadkov - ampak se mi tudi ne zdi več tako zelo potreben, saj je celotna slovenija ne glede na raznorazne spremenljivke bistveno povečala delež odadkov, ki jih ločijo in zaenkrat izgleda da se trend višanja taga deleža še ni ustavil.
 
 ```{r shiny, echo=FALSE, message=FALSE, warning=FALSE}
 shinyAppDir("shiny", options=list(width="100%", height=600))

@@ -4,11 +4,11 @@ shinyUI(fluidPage(
   
   tabsetPanel(
     tabPanel("Združitev regij v skupine",
-             fluidRow(
+             sidebarPanel(
                numericInput(inputId="st", label="Izberi število skupin:",
                            value=3, min=1, max=5)
              ),
-             fluidRow(plotOutput("zemljevid"))),
+             mainPanel(plotOutput("zemljevid"))),
     
     tabPanel("Deleži ločenih odpadkov po regijah",
              sidebarPanel(
