@@ -97,7 +97,7 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
 ```{r graf_locevanje_skozi_leta, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-graf.locevanje.skozi.leta + xlab("Leto") + ylab("Tone zbranih odpadkov") + ggtitle("Graf ločenih odpadkov po vrstah") + scale_color_discrete(name="Vrsta odpadkov", labels=c("Drugo", "Embalaža", "Papir", "Steklo")) + theme(axis.text.x = element_text(angle = 90, vjust = 0.3, hjust=1))
+graf.locevanje.skozi.leta + xlab("Leto") + ylab("Zbrani odpadki (v 1000 ton)") + ggtitle("Graf ločenih odpadkov po vrstah") + scale_color_discrete(name="Vrsta odpadkov", labels=c("Drugo", "Embalaža", "Papir", "Steklo")) + theme(axis.text.x = element_text(angle = 90, vjust = 0.3, hjust=1))
 
 ```
 
@@ -111,7 +111,7 @@ graf.nastali.regije + xlab("Leto") + ylab("Kilogrami nastalih odpadkov na prebiv
 Na podatkih iz let 2002 za stopnjo izobraženosti po regijah sem si ogledala, ali obstaja kakšna povezava med izobraženostjo in stopnjo ločevanja odpadkov. Iz grafa je razvidno, da se takšne povezave ne da najti;
 
 ```{r graf_izobrazba_locevanje, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-graf.izobazba.in.locevanje + xlab("Delež prebivalstva z določeno stopnjo izobrazbe") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf povezave med izobraženostjo in \nločevanjem odpadkov v letu 2002") + labs(color="Stopnja izobrazbe")
+graf.izobazba.in.locevanje + xlab("Delež prebivalstva z določeno stopnjo izobrazbe") + ylab("Delež ločenih odpadkov (od nastalih) v %") + ggtitle("Graf povezave med izobraženostjo in \nločevanjem odpadkov v letu 2002") + scale_color_discrete(name="Stopnja izobrazbe", labels=c("Osnovna", "Srednja", "Višja"))
 
 ```
 

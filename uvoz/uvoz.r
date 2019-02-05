@@ -75,27 +75,35 @@ investicije.regije <- right_join(investicije.regije1, investicije.regije2)
 
 #Funkcija, ki uvozi podatke iz datoteke T6srednja_po_regijah.csv
 data8 <- read_csv2("podatki/T6srednja_po_regijah.csv", skip=3, n_max=13, 
-                   col_names=c("regije", "srednja_izobrazba"),
+                   col_names=c("regije", "stevilo"),
                    locale=locale(encoding="Windows-1250"))
+
+data8$izobrazba <- factor("srednja", levels=c("osnovna", "srednja", "visja"))
+
+data8$regije <- regije
 
 #Funkcija, ki uvozi podatke iz datoteke T6visja_po_regijah.csv
 data9 <- read_csv2("podatki/T6visja_po_regijah.csv", skip=3, n_max=13, 
                    col_names=c("regije", 1:3 ),
                    locale=locale(encoding="Windows-1250"))
 
-data9["visja_izobrazba"] <- apply(data9[-1], 1, sum)
+data9$stevilo <- apply(data9[-1], 1, sum)
 
+data9$izobrazba <- factor("visja", levels=c("osnovna", "srednja", "visja"))
+
+data9$regije <- regije
 
 #Funkcija, ki uvozi podatke iz datoteke T6osnovnosolska_po_regijah.csv
 data10 <- read_csv2("podatki/T6osnovnosolska_po_regijah.csv", skip=3, n_max=13, 
-                   col_names=c("regije","osnovnosolska"),
+                   col_names=c("regije","stevilo"),
                    locale=locale(encoding="Windows-1250"))
+
+data10$izobrazba <- factor("osnovna", levels=c("osnovna", "srednja", "visja"))
 
 data10$regije <- regije
 
 #Funkcija, ki združi podatke o izobrazbi v eno tabelo
-izobrazba.regije <- data.frame(data10, data8[2], data9[5])
-names(izobrazba.regije)[c(3,4)] = c(names(data8[2]), names(data9[5]))
+izobrazba.regije <- rbind(data10, data8, data9[c(1,5,6)])
 
 #Funkcija, ki uvozi podatke iz datoteke T7otroci.csv
 data11 <- read_csv2("podatki/T7otroci.csv", skip=5, n_max=13, 
@@ -106,7 +114,9 @@ data11 <- data11[,c("regije",2002:2017)]
 data11$regije <- regije
 
 starostne.skupine.regije1 <- melt(data11, id.vars="regije", measure.vars=names(data11)[-1],
-                              variable.name="leto", value.name="0-14", na.rm=TRUE)
+                              variable.name="leto", value.name="stevilo", na.rm=TRUE)
+
+starostne.skupine.regije1$starostna_skupina <- factor("0-14", levels=c("0-14", "15-64", "65+"))
 
 #Funkcija, ki uvozi podatke iz datoteke T7odrasli.csv
 data12 <- read_csv2("podatki/T7odrasli.csv", skip=5, n_max=13, 
@@ -117,7 +127,9 @@ data12 <- data12[,c("regije",2002:2017)]
 data12$regije <- regije
 
 starostne.skupine.regije2 <- melt(data12, id.vars="regije", measure.vars=names(data12)[-1],
-                                  variable.name="leto", value.name="15-64", na.rm=TRUE)
+                                  variable.name="leto", value.name="stevilo", na.rm=TRUE)
+
+starostne.skupine.regije2$starostna_skupina <- factor("15-64", levels=c("0-14", "15-64", "65+"))
 
 #Funkcija, ki uvozi podatke iz datoteke T7starejsi.csv
 data13 <- read_csv2("podatki/T7starejsi.csv", skip=5, n_max=13, 
@@ -128,10 +140,12 @@ data13 <- data13[,c("regije",2002:2017)]
 data13$regije <- regije
 
 starostne.skupine.regije3 <- melt(data13, id.vars="regije", measure.vars=names(data13)[-1],
-                                  variable.name="leto", value.name="65+", na.rm=TRUE)
+                                  variable.name="leto", value.name="stevilo", na.rm=TRUE)
+
+starostne.skupine.regije3$starostna_skupina <- factor("65+", levels=c("0-14", "15-64", "65+"))
 
 #Funkcija, ki zdruzi podatke o starostnih skupinah v eno tabelo
-starostne.skupine.regije <- right_join(starostne.skupine.regije1, starostne.skupine.regije2)
-starostne.skupine.regije <- right_join(starostne.skupine.regije, starostne.skupine.regije3)
+starostne.skupine.regije <- rbind(starostne.skupine.regije1, starostne.skupine.regije2, starostne.skupine.regije3)
+
 
 

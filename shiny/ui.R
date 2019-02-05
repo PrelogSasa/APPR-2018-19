@@ -5,7 +5,7 @@ shinyUI(fluidPage(
   tabsetPanel(
     tabPanel("Združitev regij v skupine",
              sidebarPanel(
-               numericInput(inputId="st", label="Izberi število skupin:",
+               sliderInput(inputId="st", label="Izberi število skupin:",
                            value=3, min=1, max=5)
              ),
              mainPanel(plotOutput("zemljevid"))),
